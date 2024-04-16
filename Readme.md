@@ -65,14 +65,14 @@
 - CarModel(enums(COROLLA, ...)), 
 - Owner(String name, String lastname). 
 3) **Input example:**
-- "owner":"Brad Pitt",
+- {"owner":"Brad Pitt",
 - "was_in_accident":false,
 - "year_of_release":2023,
 - "accessories":"rear seat entertaining system, GPS navigator, GPS navigator, dash cam, rear seat entertaining system, backup cameras",
 - "model":"OPTIMA",
 - "brand":"BUICK",
-- "mileage":124072
-4) **Output example:** 
+- "mileage":124072}
+4) **Output example:** Name: statistics_by_was_in_accident
 - \<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 -  \<statistic>
 - \<item>

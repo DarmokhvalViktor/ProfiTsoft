@@ -50,26 +50,6 @@ public class FileWriterTest {
             System.out.println(e.getMessage());
         }
     }
-//    TODO not working tests
-//
-//    @Test
-//    void testGenerateXMLTransformerExceptionHandling() {
-////        FileWriter fileWriter = mock(FileWriter.class);
-////        doThrow(TransformerException.class).when(fileWriter).generateXML(any(),any());
-//        TransformerException exception = assertThrows(TransformerException.class,
-//                () -> fileWriter.generateXML(null, "test"));
-//        System.out.println("exception" + exception);
-//        assertEquals("An error occurred while writing to file", exception.getMessage());
-//    }
-//
-//    @Test
-//    void testGenerateXMLParserConfigurationExceptionHandling() {
-//        FileWriter fileWriter = mock(FileWriter.class);
-//        doThrow(ParserConfigurationException.class).when(fileWriter).generateXML(any(),any());
-//        ParserConfigurationException exception = assertThrows(ParserConfigurationException.class,
-//                () -> fileWriter.generateXML(null, "test"));
-//        assertEquals("An error occurred while writing to file", exception.getMessage());
-//    }
 
     @Test
     void testGenerateXMLNullMap() {
