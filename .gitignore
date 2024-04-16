@@ -36,6 +36,5 @@ build/
 
 ### Mac OS ###
 .DS_Store
-/src/main/resources/
 /src/test/empty
 /src/test/not_empty

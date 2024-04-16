@@ -50,27 +50,40 @@
 3) Main method not tested.
 
 ### Additional info:
-1) **Main entity:** Car(
-   CarBrand brand;
-   CarModel model;
-   Integer yearOfRelease;
-   Owner owner;
-   Integer mileage;
-   List<CarAccessories> accessories;
-   boolean wasInAccident;). 
-2) **Additional entities:** CarAccessories(enums(WINDOW_TINTING("window tinting"), ...)), CarBrand(enums(TOYOTA, ...)), CarModel(enums(COROLLA, ...)), Owner(String name, String lastname). 
-3) **Input example:** {"owner":"Brad Pitt","was_in_accident":false,"year_of_release":2023,"accessories":"rear seat entertaining system, GPS navigator, GPS navigator, dash cam, rear seat entertaining system, backup cameras","model":"OPTIMA","brand":"BUICK","mileage":124072}.
-4) **Output example:** \<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-   \<statistic>
-   \<item>
-   \<value>false</value>
-   \<count>1576</count>
-   \</item>
-   \<item>
-   \<value>true</value>
-   \<count>3424</count>
-   \</item>
-   \</statistic>
+1) **Main entity:** 
+- Car (
+   - CarBrand brand;
+   - CarModel model;
+   - Integer yearOfRelease;
+   - Owner owner;
+   - Integer mileage;
+   - List<CarAccessories> accessories;
+   - boolean wasInAccident;) 
+2) **Additional entities:** 
+- CarAccessories(enums(WINDOW_TINTING("window tinting"), ...)), 
+- CarBrand(enums(TOYOTA, ...)), 
+- CarModel(enums(COROLLA, ...)), 
+- Owner(String name, String lastname). 
+3) **Input example:**
+- "owner":"Brad Pitt",
+- "was_in_accident":false,
+- "year_of_release":2023,
+- "accessories":"rear seat entertaining system, GPS navigator, GPS navigator, dash cam, rear seat entertaining system, backup cameras",
+- "model":"OPTIMA",
+- "brand":"BUICK",
+- "mileage":124072
+4) **Output example:** 
+- \<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+-  \<statistic>
+- \<item>
+- \<value>false</value>
+- \<count>1576</count>
+- \</item>
+- \<item>
+- \<value>true</value>
+- \<count>3424</count>
+- \</item>
+- \</statistic>
 
 5) There are two utility classes -> "RandomFilesWithCarsGenerator" and "FileRemover". First is used to create at specified directory some number of .json files and populate them with correct info to test program workflow with different number of threads. FileRemover deletes .json files from directory passed as 1st argument into program. **Example of usage is commented in "Main" class.**
 6) "model" directory and classes inside is for future expansion, currently used only while generating files to read from.
