@@ -30,5 +30,5 @@ public enum CarBrand {
     ACURA,
     LINCOLN,
     CHRYSLER,
-    DODGE;
+    DODGE
 }

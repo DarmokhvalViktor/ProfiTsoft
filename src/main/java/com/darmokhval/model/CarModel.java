@@ -26,5 +26,5 @@ public enum CarModel {
     CHEROKEE,
     MODEL_3,
     RX_350,
-    OPTIMA;
+    OPTIMA
 }

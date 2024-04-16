@@ -1,42 +1,33 @@
 package com.darmokhval.utility;
 
 import com.darmokhval.model.CarAccessories;
-import com.darmokhval.model.Owner;
 import com.darmokhval.model.CarBrand;
 import com.darmokhval.model.CarModel;
+import com.darmokhval.model.Owner;
+import lombok.extern.slf4j.Slf4j;
 import org.json.JSONObject;
 
-import java.io.BufferedWriter;
 import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
+import java.io.*;
 import java.util.Random;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
+ * This class actually can be deleted!!! Only use to generate some .json files, so no point to test this. Or is it?
  * Utility class to generate files to test if the program works.
- * methods starts with generateRandom... -> utility methods to generates random values to fill in file.
+ * methods that starts with "generateRandom..." -> utility methods to generates random values to fill in file.
  * main method -> createFile, final values can be changed to test different conditions.
- * it takes about 54 seconds to create 5 files with 2_000_000 objects(at least on my PC) (all files weigh 373+mb)
- * it took about 42-38 seconds to create 7 files with 1_000_000 objects. files weigh -> 186mb.
- * it took 118 seconds to create 1 file with 20_000_000 objects (file weight 3.73gb)
- * 5 seconds to create single file with 1_000_000 objects (weight 198mb).
- * all of that above with 1 single thread.
- * with 7 threads code took 28-24 seconds to create 7 files. seems like disc I/O operations limits my code to be executed at some speed.
- * 294 seconds for 7 threads to create 7 files, each 3.79gb weigh.
  * method .createFiles() writes line-by-line, so it shouldn't consume too much RAM.
  */
+@Slf4j
 public class RandomFilesWithCarsGenerator {
     private static final Random random = new Random();
-    private static final Logger logger = Logger.getLogger("RandomGenerationLogger");
     private final static int numberOfObjectsToCreate = 5_000;
     private static final int minYear = 1990;
     private static final int maxYear = 2024;
-    private static final String pathToSaveFile = "src/main/resources/large_car_data_";
+    private static final String pathToSaveFile = "src" + File.separator + "main" + File.separator + "resources" + File.separator + "large_car_data_";
     private static final String characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
     private static final String[] famousPeople = {
             "Albert Einstein", "Marie Curie", "Isaac Newton", "Galileo Galilei",
@@ -54,8 +45,8 @@ public class RandomFilesWithCarsGenerator {
      * one can choose how many files should be created.
      * @param numberOfFiles specify how many files should be created.
      */
-    public void createFiles(int numberOfFiles) {
-        ExecutorService executorService = Executors.newFixedThreadPool(7);
+    public void createFiles(int numberOfFiles, int numberOfThreads) {
+        ExecutorService executorService = Executors.newFixedThreadPool(numberOfThreads);
         System.out.println("Creating files.... ");
         for(int j = 1; j <= numberOfFiles; j++) {
             int finalJ = j;
@@ -64,10 +55,10 @@ public class RandomFilesWithCarsGenerator {
         executorService.shutdown();
         try {
             if (!executorService.awaitTermination(Long.MAX_VALUE, TimeUnit.NANOSECONDS)) {
-                logger.log(Level.WARNING, "Executor service did not terminate within the specified timeout");
+                log.info("Executor service did not terminate within the specified timeout");
             }
         } catch (InterruptedException e) {
-            logger.log(Level.SEVERE, "Thread interrupted while awaiting termination of executor service", e);
+            log.error("Thread interrupted while awaiting termination of executor service", e);
             Thread.currentThread().interrupt();
         } finally {
             System.out.println("Files were successfully created!!!");
@@ -94,7 +85,7 @@ public class RandomFilesWithCarsGenerator {
                 writer.println(jsonObject);
             }
         } catch (IOException e) {
-            logger.log(Level.SEVERE, "An error occurred while writing to file", e);
+            log.error("An error occurred while writing to file", e);
         }
     }
 
